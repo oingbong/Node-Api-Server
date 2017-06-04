@@ -1,5 +1,8 @@
+const assert = require('assert');
+
 describe('GET /products', () => {
 	it('should return 200 status code', () => {
-		console.log('test 1');
+		// assert.equal(true, false); // error
+		assert.equal(true, true); // pass
 	});
 });
