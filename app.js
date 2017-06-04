@@ -11,3 +11,5 @@ app.listen(3001, () => {
 });
 
 app.use('/products', require('./api/products'));
+
+module.exports = app;
