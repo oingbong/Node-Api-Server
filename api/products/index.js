@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
+const controller = require('./product.controller');
 
 // 임시 데이터
 let products = [
@@ -21,40 +22,13 @@ let products = [
 // 라우팅 설정
 
 // 전체 리스트 조회
-router.get('/', (req, res) => {
-	return res.json(products);
-});
+router.get('/', controller.index);
 
 // 특정 상품 조회
-router.get('/:id', (req, res) => {
-	const id = parseInt(req.params.id, 10);
-	if(!id){
-		return res.status(400).json({error : 'Incorrect id'});
-	}
-
-	let product = products.filter(product => product.id === id)[0];
-	if(!product){
-		return res.status(404).json({error : 'Unknown product'});
-	}
-
-	return res.json(product);
-});
+router.get('/:id', controller.show);
 
 // 특정 상품 제거
-router.delete('/:id', (req, res) => {
-	const id = parseInt(req.params.id, 10);
-	if(!id){
-		return res.status(400).json({error : 'Incorrect id'});
-	}
-
-	const productIdx = products.findIndex(product => product.id === id);
-	if(productIdx === -1){
-		return res.status(404).json({error : 'Unknown product'});
-	}
-
-	products.splice(productIdx, 1);
-	res.status(204).send();
-});
+router.delete('/:id', controller.destroy);
 
 /*
 	bodyParser = 미들웨어
@@ -65,26 +39,6 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended : true }));
 
 // 상품 생성
-router.post('/', (req, res) => {
-
-	const name = req.body.name || '';
-	if(!name.length){
-		return res.status(400).json({error : 'Incorrect name'});
-	}
-
-	// 현재 데이터 기준 id 값보다 1 더 큰 id 를 만들기 위한 작업
-	const id = products.reduce((maxId, product) => {
-		return product.id > maxId ? product.id : maxId
-	}, 0) +1;
-
-	// 배열에 상품 추가
-	const newProduct = {
-		id : id,
-		name : name
-	};
-	products.push(newProduct);
-
-	return res.status(201).json(newProduct);
-});
+router.post('/', controller.create);
 
 module.exports = router;
