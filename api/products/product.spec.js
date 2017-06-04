@@ -1,8 +1,6 @@
-const assert = require('assert');
-
+const should = require('should');
 describe('GET /products', () => {
 	it('should return 200 status code', () => {
-		// assert.equal(true, false); // error
-		assert.equal(true, true); // pass
+		(true).should.be.equal(true);
 	});
 });
