@@ -29,6 +29,11 @@ describe('GET /products', () => {
 		models.Product.bulkCreate(products).then(() => done());
 	});
 
+	after('clear up databse', (done) => {
+		syncDatabase().then(() => done());
+		console.log('delete test Data');
+	});
+
 	it('should return 200 status code(GET)', (done) => {
 		request(app)
 		.get('/products')
@@ -54,6 +59,8 @@ describe('GET /products', () => {
 		done();
 		});
 	});
+
+
 });
 
 // describe('PUT /products/:id', () => {
