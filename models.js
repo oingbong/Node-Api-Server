@@ -1,5 +1,10 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('db_invest', 'root', ''); // db name, id, pw
+const config = require('./config/environment');
+const sequelize = new Sequelize(
+	config.mysql.database,
+	config.mysql.username,
+	config.mysql.password
+); // db name, id, pw
 
 const Product = sequelize.define('product', {
 	/*
