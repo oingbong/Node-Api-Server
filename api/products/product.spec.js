@@ -3,7 +3,7 @@ const request = require('supertest');
 const app = require('../../app');
 
 describe('GET /products', () => {
-	it('should return 200 status code', (done) => {
+	it('should return 200 status code(GET)', (done) => {
 		request(app)
 		.get('/products')
 		.expect(200)
@@ -27,5 +27,19 @@ describe('GET /products', () => {
 			});
 		done();
 		});
+	});
+});
+
+describe('PUT /products/:id', () => {
+	it.only('should return 200 status code(PUT)', (done) => {
+		request(app)
+			.put('/products/1')
+			.send({
+				name : 'foo'
+			})
+			.end((err, res) => {
+				if(err) throw err;
+				done();
+			});
 	});
 });

@@ -47,3 +47,7 @@ exports.create = (req, res) => {
 		name : name
 	}).then((product) => res.status(201).json(product));
 };
+
+exports.update = (req, res) => {
+	res.send();
+}
