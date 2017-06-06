@@ -41,4 +41,7 @@ router.use(bodyParser.urlencoded({ extended : true }));
 // 상품 생성
 router.post('/', controller.create);
 
+// 상품 변경
+router.put('/:id', controller.update);
+
 module.exports = router;
