@@ -1,8 +1,8 @@
 const should = require('should');
 const request = require('supertest');
-const app = require('../../app');
-const syncDatabase = require('../../bin/sync-database'); // DB sync Module
-const models = require('../../models'); // DB Connect
+const app = require('../../../app');
+const syncDatabase = require('../../../bin/sync-database'); // DB sync Module
+const models = require('.././models/models'); // DB Connect
 
 describe('GET /products', () => {
 

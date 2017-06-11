@@ -1,4 +1,4 @@
-const models = require('../models');
+const models = require('../app/models/models');
 /*
 	DB Sync
 	force : true => sync() 함수 실행되면 무조건 테이블을 새로 만드는 옵션
